@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { NextPage, NextPageContext } from "next";
 import Head from "next/head";
 
 import { Fragment, useEffect, useState } from "react";
@@ -8,6 +8,12 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 import { useTimeoutFn } from "react-use";
 
 import styles from "../styles/index.module.css";
+
+export async function getStaticProps(context: NextPageContext) {
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
 
 function MainContent() {
   let [isShowing, setIsShowing] = useState(false);
@@ -34,7 +40,7 @@ function MainContent() {
             {({ open }) => (
               <>
                 <Disclosure.Button className="flex justify-between px-4 py-2 w-full text-sm font-medium text-left text-orange-900 bg-white rounded-lg hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-75">
-                  <span>When will Plex Anime Server become available?</span>
+                  <span>When will Anime Server become available?</span>
                   <ChevronUpIcon
                     className={`${
                       open ? "transform rotate-180" : ""
@@ -72,58 +78,67 @@ function MainContent() {
 
 const Home: NextPage = () => {
   return (
-    <div className="py-12 h-screen bg-gradient-to-r from-amber-300 to-orange-500 relative">
-      <Head>
-        <title>Plex Anime Server</title>
-        <meta name="description" content="the original Plex Anime Server" />
-      </Head>
-
-      <main className="pl-2 pr-2">
+    <div className="h-screen bg-gradient-to-r from-amber-300 to-orange-500 relative">
+      <div className="py-12 h-screen overflow-y-scroll relative z-10">
+        <Head>
+          <title>Anime Server</title>
+          <meta name="description" content="The Waifu Lover's Anime Server" />
+        </Head>
         <img
           className="absolute w-[50%] top-0 left-[-20px]"
           src="/waifu1.png"
         />
-        <img
-          className="absolute w-[200px] bottom-0 right-0"
-          src="/waifu2.png"
-        />
-        <div className="flex relative flex-col justify-center items-center mt-8 mb-12 rounded-xl">
-          <h1
-            className="text-5xl text-center text-white font-cursive
-          text-transparent bg-clip-text bg-gradient-to-br from-white to-orange-200 drop-shadow-md"
-          >
-            Plex Anime Server
-          </h1>
-        </div>
-        <div className="flex relative flex-col justify-center items-center">
-          <button className="inline-flex justify-center px-4 py-2 text-lg font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            Access the Anime Server
-          </button>
-        </div>
-        <div className="">
+        <main className="pl-2 pr-2">
           <div className="flex relative flex-col justify-center items-center mt-8 mb-12 rounded-xl">
-            <MainContent />
+            <h1
+              className="text-5xl text-center text-white font-cursive
+              text-transparent bg-clip-text bg-gradient-to-br from-white to-orange-200 drop-shadow-md"
+            >
+              The Anime Server{" "}
+            </h1>
           </div>
+          <div className="flex relative flex-col justify-center items-center">
+            <button className="inline-flex justify-center px-4 py-2 text-lg font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+              Access the Anime Server
+            </button>
+          </div>
+          <div className="">
+            <div className="flex relative flex-col justify-center items-center mt-8 mb-12 rounded-xl">
+              <MainContent />
+            </div>
 
-          <div className="flex relative justify-center items-center gap-4 flex-wrap">
-            <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              Sonarr
-            </button>
-            <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              Jackett
-            </button>
-            <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              Transmission
-            </button>
-            <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              Shana Project
-            </button>
-            <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              Nyaa.si
-            </button>
+            <div className="flex relative justify-center items-center gap-4 flex-wrap">
+              <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                Sonarr
+              </button>
+              <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                Jackett
+              </button>
+              <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                Transmission
+              </button>
+              <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                Shana Project
+              </button>
+              <button className="inline-flex justify-center px-4 py-2 text-md text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                Nyaa.si
+              </button>
+            </div>
+
+            <div className="w-full">
+              <p className="font-md m-auto text-center text-white mt-10 drop-shadow-sm">
+                <i> Um projeto da comunidade. </i>
+                <br />
+                🤝
+              </p>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
+      <img
+        className="absolute w-[200px] bottom-0 right-0 z-1"
+        src="/waifu2.png"
+      />
     </div>
   );
 };
