@@ -79,7 +79,7 @@ function MainContent() {
 const Home: NextPage = () => {
   return (
     <div className="h-screen bg-gradient-to-r from-amber-300 to-orange-500 relative">
-      <div className="py-12 h-screen overflow-y-scroll relative z-10">
+      <div className="py-12 h-screen overflow-y-scroll overflow-x-hidden relative z-10">
         <Head>
           <title>Anime Server</title>
           <meta name="description" content="The Waifu Lover's Anime Server" />
@@ -87,6 +87,10 @@ const Home: NextPage = () => {
         <img
           className="absolute w-[50%] top-0 left-[-20px]"
           src="/waifu1.png"
+        />
+        <img
+          className="absolute w-[20%] top-0 right-[0px] -rotate-12"
+          src="/waifu3.png"
         />
         <main className="pl-2 pr-2">
           <div className="flex relative flex-col justify-center items-center mt-8 mb-12 rounded-xl">
